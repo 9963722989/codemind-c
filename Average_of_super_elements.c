@@ -1,31 +1,41 @@
 #include<stdio.h>
 int main()
 {
-    int n,i,j,c,d=0;
+    int n;
     scanf("%d",&n);
-    float a[n],avg=0;
+    int a[n],f[n],i,j,c,z=0;
+    float s=0;
     for(i=0;i<n;i++)
     {
-        scanf("%f",&a[i]);
+        scanf("%d",&a[i]);
+        f[i]=-1;
     }
     for(i=0;i<n;i++)
     {
-        c=0;
-        for(j=0;j<n;j++)
+        c=1;
+        for(j=i+1;j<n;j++)
         {
             if(a[i]==a[j])
             {
                 c++;
-                if(i!=j) a[j]=0;
+                f[j]=0;
             }
         }
-        if(a[i]==c)
+        if(f[i]!=0)
         {
-                d++;
-                avg+=a[i];
+            f[i]=c;
         }
     }
-    avg/=d;
-     if(d>0)   printf("%.2f",avg);
-     else printf("-1");
+    for(i=0;i<n;i++)
+    {
+        if(f[i]==a[i])
+        {
+            s=s+a[i];
+            z++;
+        }
+    }
+    if(s==0)
+    printf("-1");
+    else
+    printf("%.2f",s/z);
 }
